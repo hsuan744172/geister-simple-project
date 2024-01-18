@@ -147,12 +147,17 @@ void GameState::checkWin(Player &player1 ,Player &player2,int &winner,bool &game
             winner=1;
         gameOver=true;
     }
-    else if(board[0][0].first.getSymbol()=='G'||board[0][5].first.getSymbol()=='G'||board[5][0].first.getSymbol()=='G'||board[5][5].first.getSymbol()=='G'){
-        if(board[0][0].first.getSymbol()=='G'||board[0][5].first.getSymbol()=='G')
+    else if(board[0][0].first.getSymbol()=='G' && board[0][0].second == 2 || board[0][5].first.getSymbol()=='G' && board[0][5].second == 2){
+        if(board[0][0].first.getSymbol()=='G' && board[0][0].second == 2 || board[0][5].first.getSymbol()=='G' && board[0][5].second == 2){
             winner=2;
-        else
+            gameOver=true;
+        }
+        else if(board[5][0].first.getSymbol()=='G' && board[5][0].second == 1 || board[5][5].first.getSymbol()=='G' && board[5][5].second == 1){
             winner=1;
-        gameOver=true;
+            gameOver=true;
+        }
+        else
+            gameOver=false;
     }
     else{
         gameOver=false;
