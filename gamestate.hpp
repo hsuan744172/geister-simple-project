@@ -147,17 +147,13 @@ void GameState::checkWin(Player &player1 ,Player &player2,int &winner,bool &game
             winner=1;
         gameOver=true;
     }
-    else if(board[0][0].first.getSymbol()=='G' && board[0][0].second == 2 || board[0][5].first.getSymbol()=='G' && board[0][5].second == 2){
-        if(board[0][0].first.getSymbol()=='G' && board[0][0].second == 2 || board[0][5].first.getSymbol()=='G' && board[0][5].second == 2){
-            winner=2;
-            gameOver=true;
-        }
-        else if(board[5][0].first.getSymbol()=='G' && board[5][0].second == 1 || board[5][5].first.getSymbol()=='G' && board[5][5].second == 1){
-            winner=1;
-            gameOver=true;
-        }
-        else
-            gameOver=false;
+    else if((board[0][0].first.getSymbol()=='G' && board[0][0].second == 2) || (board[0][5].first.getSymbol()=='G' && board[0][5].second == 2)){
+        winner=2;
+        gameOver=true;
+    }
+    else if((board[5][0].first.getSymbol()=='G' && board[5][0].second == 1 )|| (board[5][5].first.getSymbol()=='G' && board[5][5].second == 1)){
+        winner=1;
+        gameOver=true;
     }
     else{
         gameOver=false;
@@ -194,10 +190,10 @@ void GameState::playGame(GameState& game) {
             do{
                 cin >> direction;
                 if(direction=='w'){
-                    row=row+1;
+                    col=col+1;
                 }
                 else if(direction=='a'){
-                    col=col+1;
+                    row=row+1;
                 }
                 else if(direction=='s'){
                     col=col-1;
@@ -236,11 +232,11 @@ void GameState::playGame(GameState& game) {
                 int random=rand()%4;
                 if(random==0){
                     direction='w';
-                    row=row+1;
+                    col=col+1;
                 }
                 else if(random==1){
                     direction='a';
-                    col=col+1;
+                    row=row+1;
                 }
                 else if(random==2){
                     direction='s';
