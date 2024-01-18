@@ -163,6 +163,7 @@ void GameState::checkWin(Player &player1 ,Player &player2,int &winner,bool &game
 
 void GameState::playGame(GameState& game) {
     initializeGame();
+    printBoard();
     int player;
     cout<<"Who will play first?(Input 1 or 2):"<< endl;
     cin>>player;
@@ -172,7 +173,7 @@ void GameState::playGame(GameState& game) {
         if(playerTurn==1){
             
             int row, col;
-            cout << "Player " << playerTurn << ",choose the ghost you want to move(Input : row col): " << endl;
+            cout << "Player " << playerTurn << ",choose the ghost you want to move(Input : row col): ";
             do{
                 cin >> row >> col;
                 if(board[col][row].second!=1){
@@ -203,6 +204,12 @@ void GameState::playGame(GameState& game) {
                 }
                 else{
                     cout << "Invalid input,please input again(Input : w or a or s or d):" << endl;
+                    continue;
+                }
+                if(!isValidMove(row, col,player1)){
+                    row=beforeRow;
+                    col=beforeCol;
+                    cout << "Can't move,please input again(Input : w or a or s or d):" << endl;
                     continue;
                 }
             }while(!isValidMove(row, col,player1)) ;
