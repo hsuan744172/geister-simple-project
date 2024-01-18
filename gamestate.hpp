@@ -5,6 +5,7 @@
 #include"player.hpp"
 #include<iostream>
 #include<vector>
+#include<ctime>
 using namespace std;
 
 class GameState {
