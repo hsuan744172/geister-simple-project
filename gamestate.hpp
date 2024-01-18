@@ -254,6 +254,11 @@ void GameState::playGame(GameState& game) {
                     direction='d';
                     row=row-1;
                 }
+                if(!isValidMove(row, col,player2)){
+                    row=beforeRow;
+                    col=beforeCol;
+                    continue;
+                }
             }while(!isValidMove(row, col,player2)) ;
             makeMove(player2,beforeRow,beforeCol,row,col);
             cout<<"Player "<<playerTurn<<" move ghost "<<board[col][row].first.getID()<<endl;
