@@ -16,7 +16,7 @@ public:
     void printBoard() const;
     bool isValidMove(int row, int col,Player &player) const;
     void makeMove(Player& player,int beforeRow,int beforeCol,int row, int col);
-    void checkWin(Player &player1 ,Player &player2,int &winner,bool &gameOver) const;
+    void checkWin(Player &player1 ,Player &player2,int &winner,bool &gameOver,P) const;
     bool isBoardFull() const { return gameOver; }
     void playGame(GameState& game);
 
@@ -132,8 +132,8 @@ void GameState::makeMove(Player& player,int beforeRow,int beforeCol,int row, int
         
     }
 }
-//判斷遊戲有沒有結束
-void GameState::checkWin(Player &player1 ,Player &player2,int &winner,bool &gameOver) const {
+//判斷遊戲有沒有結束 因為ㄗㄡ
+void GameState::checkWin(Player &player1 ,Player &player2,int &winner,bool &gameOver,Player now) const {
     if(player1.get_G_Num()==4||player1.get_E_Num()==4){
         if(player1.get_G_Num()==4)
             winner=1;
