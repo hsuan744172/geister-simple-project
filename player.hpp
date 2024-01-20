@@ -1,3 +1,5 @@
+#ifndef PLAYER_HPP
+#define PLAYER_HPP
 #include"ghost.hpp"
 using namespace std;
 #define BOARD_SIZE 6
@@ -20,3 +22,4 @@ private:
     int G_Num=0;
     int E_Num=0;
 };
+#endif // !PLAYER_HPP

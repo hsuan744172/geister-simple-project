@@ -19,6 +19,6 @@ private:
     int ghostID;
 
 };
-#endif
+#endif // !GHOST_HPP
 
 
