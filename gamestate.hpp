@@ -12,13 +12,7 @@ class GameState {
 public:
     GameState() : gameOver(false) {}
 
-    void initializeGame();
-    void printBoard() const;
-    bool isValidMove(int row, int col,Player &player) const;
-    void makeMove(Player& player,int beforeRow,int beforeCol,int row, int col);
-    void checkWin(Player &player1 ,Player &player2,int &winner,bool &gameOver,Player now) const;
-    bool isBoardFull() const { return gameOver; }
-    void playGame(GameState& game);
+    void playGame();
 
 private:
     pair<Ghost,int> board[BOARD_SIZE][BOARD_SIZE];
@@ -26,6 +20,13 @@ private:
     Player player2;
     bool gameOver;
     int winner;
+    
+    void initializeGame();
+    void printBoard() const;
+    bool isValidMove(int row, int col,Player &player) const;
+    void makeMove(Player& player,int beforeRow,int beforeCol,int row, int col);
+    void checkWin(Player &player1 ,Player &player2,int &winner,bool &gameOver,Player now) const;
+    bool isBoardFull() const { return gameOver; }
 };
 
 void GameState::initializeGame() {
@@ -162,7 +163,7 @@ void GameState::checkWin(Player &player1 ,Player &player2,int &winner,bool &game
 }
 
 
-void GameState::playGame(GameState& game) {
+void GameState::playGame() {
     initializeGame();
     printBoard();
     int player;
@@ -170,7 +171,7 @@ void GameState::playGame(GameState& game) {
     cin>>player;
     int playerTurn = player;
     int beforeRow=0,beforeCol=0;
-    while (!game.isBoardFull()) {
+    while (!isBoardFull()) {
         if(playerTurn==1){
             
             int row, col;
