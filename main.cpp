@@ -2,6 +2,6 @@
 using namespace std;
 int main(){
     GameState game;
-    game.playGame(game);
+    game.playGame();
     return 0;
 }
