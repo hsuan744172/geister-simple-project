@@ -131,11 +131,20 @@ void GameState::makeMove(Player& player,int beforeRow,int beforeCol,int row, int
                
         }
         
+        if(player.get_playerID()==2 && ((board[0][0].first.getSymbol()=='G' && board[0][0].second == 2) || (board[0][5].first.getSymbol()=='G' && board[0][5].second == 2))){
+            winner=2;
+
+        }
+        else if(player.get_playerID()==1 && ((board[5][0].first.getSymbol()=='G' && board[5][0].second == 1 )|| (board[5][5].first.getSymbol()=='G' && board[5][5].second == 1))){
+            winner=1;
+        }
     }
 }
 //判斷遊戲有沒有結束，出去角落才算贏
 void GameState::checkWin(Player &player1 ,Player &player2,int &winner,bool &gameOver,Player now) const {
-    if(player1.get_G_Num()==4||player1.get_E_Num()==4){
+    if(winner!=-1)
+        gameOver=true;
+    else if(player1.get_G_Num()==4||player1.get_E_Num()==4){
         if(player1.get_G_Num()==4)
             winner=1;
         else
@@ -147,14 +156,6 @@ void GameState::checkWin(Player &player1 ,Player &player2,int &winner,bool &game
             winner=2;
         else
             winner=1;
-        gameOver=true;
-    }
-    else if(now.get_playerID()==2 && ((board[0][0].first.getSymbol()=='G' && board[0][0].second == 2) || (board[0][5].first.getSymbol()=='G' && board[0][5].second == 2))){
-        winner=2;
-        gameOver=true;
-    }
-    else if(now.get_playerID()==1 && ((board[5][0].first.getSymbol()=='G' && board[5][0].second == 1 )|| (board[5][5].first.getSymbol()=='G' && board[5][5].second == 1))){
-        winner=1;
         gameOver=true;
     }
     else{
@@ -217,8 +218,9 @@ void GameState::playGame() {
             }while(!isValidMove(row, col,player1)) ;
             
             makeMove(player1,beforeRow,beforeCol,row,col);
-            cout<<"Player "<<playerTurn<<" move ghost "<<board[col][row].first.getID()<<endl;
+            cout<<"Player "<<playerTurn<<" move ghost "<<endl;
             printBoard();
+            cout<<"G:"<<player1.get_G_Num()<<" E:"<<player1.get_E_Num()<<endl;
             checkWin(player1,player2,winner,gameOver,player1);
             if(gameOver){
                 cout<<"Player "<<winner<<" wins!"<<endl;
@@ -264,6 +266,7 @@ void GameState::playGame() {
             makeMove(player2,beforeRow,beforeCol,row,col);
             cout<<"Player "<<playerTurn<<" move ghost "<<board[col][row].first.getID()<<endl;
             printBoard();
+            cout<<"G:"<<player2.get_G_Num()<<" E:"<<player2.get_E_Num()<<endl;
 
             checkWin(player1,player2,winner,gameOver,player2);
             if(gameOver){
